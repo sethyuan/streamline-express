@@ -12,7 +12,6 @@ $ npm install streamline-express
 
 ```js
 var express = require("express");
-
 var app = require("streamline-express")(express());
 
 // Both streamline pattern handlers, and normal pattern handlers are supported.
@@ -31,6 +30,7 @@ app.get("/", function(req, res, next, _) {
   setTimeout(_, 2000);
   console.log("/");
   if (!req.query.c) next("route");
+  else next();
 }, function(req, res) {
   console.log("next /");
   res.send("OK");

@@ -3,22 +3,22 @@ var express = require("express"),
 
 var app = require("./lib/streamline-express")(express());
 
-var myErrorFunc = function(cb) {
-  cb(new Error("my e"));
-};
+// var myErrorFunc = function(cb) {
+//   cb(new Error("my e"));
+// };
 
 app.configure(function(){
   app.set("port", 8700);
   app.use(express.logger("dev"));
   app.use(express.bodyParser());
-  app.use(function(req, res, _) {
-    setTimeout(_, 2000);
-    console.log("first run");
-  });
-  app.use(function(req, res, next) {
-    console.log("yeah");
-    next();
-  });
+  // app.use(function(req, res, _) {
+  //   setTimeout(_, 2000);
+  //   console.log("first run");
+  // });
+  // app.use(function(req, res, next) {
+  //   console.log("yeah");
+  //   next();
+  // });
 });
 
 app.configure("development", function(){
@@ -40,6 +40,7 @@ app.get("/", function(req, res, next, _) {
   setTimeout(_, 2000);
   console.log("/");
   if (!req.query.c) next("route");
+  else next();
 }, function(req, res) {
   console.log("next /");
   res.send("OK");
