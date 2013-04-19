@@ -1,6 +1,6 @@
 # streamline-express
 
-An Express patch for using streamline.
+An Express 3.x patch for using streamline.
 
 ## Installation
 
@@ -10,7 +10,36 @@ $ npm install streamline-express
 
 ## Example
 
-## API
+```js
+var express = require("express");
+
+var app = require("streamline-express")(express());
+
+// Both streamline pattern handlers, and normal pattern handlers are supported.
+app.get("/root", function(req, res, _) {
+  setTimeout(_, 1000);
+  console.log("/root");
+  res.send("root OK");
+});
+
+app.get("/root2", function(req, res) {
+  console.log("root 2");
+  res.send("root 2");
+});
+
+app.get("/", function(req, res, next, _) {
+  setTimeout(_, 2000);
+  console.log("/");
+  if (!req.query.c) next("route");
+}, function(req, res) {
+  console.log("next /");
+  res.send("OK");
+});
+```
+
+## Notice
+
+You can use normal patterns as well as streamline patterns for routing, however, if you use (req, res, next) pattern, beware that the third argument's name has to be **next**.
 
 ## License
 
