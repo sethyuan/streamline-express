@@ -1,0 +1,46 @@
+{
+  "name": "streamline-express",
+  "version": "0.1.0",
+  "description": "An Express patch for using streamline.",
+  "main": "./lib/streamline-express.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sethyuan/streamline-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sethyuan/streamline-express/issues",
+    "email": "cavingdeep@gmail.com"
+  },
+  "keywords": [
+    "streamline",
+    "express",
+    "patch",
+    "router",
+    "routing",
+    "route"
+  ],
+  "author": {
+    "name": "sethyuan",
+    "email": "cavingdeep@gmail.com"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "methods": "latest"
+  },
+  "peerDependencies": {
+    "express": "3.x",
+    "streamline": ">=0.4 <1.0"
+  },
+  "devDependencies": {
+    "express": "3.x",
+    "streamline": ">=0.4 <1.0",
+    "fibers": "~1.0.0"
+  }
+}
