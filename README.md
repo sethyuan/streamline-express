@@ -35,11 +35,17 @@ app.get("/", function(req, res, next, _) {
   console.log("next /");
   res.send("OK");
 });
+
+// Middlewares are also supported.
+app.use(function(err, req, res, next, _) {
+  setTimeout(_, 1000);
+  console.error(err);
+});
 ```
 
 ## Notice
 
-You can use normal patterns as well as streamline patterns for routing, however, if you use (req, res, next) pattern, beware that the third argument's name has to be **next**.
+You can use normal patterns as well as streamline patterns for routing, however, if you use (req, res, next) or (err, req, res, next) pattern, beware that the `next` argument has to be named **next**.
 
 ## License
 

@@ -4,20 +4,46 @@ var express = require("express"),
 var app = require("./lib/streamline-express")(express());
 
 // var myErrorFunc = function(cb) {
-//   cb(new Error("my e"));
+//   setTimeout(function() {
+//     cb(new Error("my e"));
+//     // cb();
+//   }, 1000);
 // };
+
+var myErrorFunc = function(_) {
+  setTimeout(_, 1000);
+  throw new Error("my e");
+};
 
 app.configure(function(){
   app.set("port", 8700);
   app.use(express.logger("dev"));
   app.use(express.bodyParser());
-  // app.use(function(req, res, _) {
-  //   setTimeout(_, 2000);
-  //   console.log("first run");
+  // app.use(function(req, res) {
+  //   throw new Error("An error");
+  //   // myErrorFunc(function(err) {
+  //   //   if (err) return next(err);
+  //   //   next();
+  //   // });
   // });
   // app.use(function(req, res, next) {
   //   console.log("yeah");
   //   next();
+  // });
+  // app.use(function(err, req, res, next) {
+  //   console.error(err.message);
+  // });
+
+  // app.use(function(req, res, next, _) {
+  //   // throw new Error("An error");
+  //   myErrorFunc(_);
+  // });
+  // app.use(function(req, res, next) {
+  //   console.log("yeah");
+  //   next();
+  // });
+  // app.use(function(err, req, res, next, _) {
+  //   console.error(err.message);
   // });
 });
 
@@ -34,6 +60,10 @@ app.configure("development", function(){
 // }, function(req, res) {
 //   console.log("next /");
 //   res.send("OK");
+// });
+// 
+// app.get("/", function(req, res) {
+//   res.send("Another OK");
 // });
 
 app.get("/", function(req, res, next, _) {
