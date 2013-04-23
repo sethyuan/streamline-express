@@ -1,7 +1,7 @@
 var express = require("express"),
     http = require("http");
 
-var app = require("./lib/streamline-express")(express());
+var app = require("../lib/streamline-express")(express());
 
 // var myErrorFunc = function(cb) {
 //   setTimeout(function() {
@@ -89,6 +89,16 @@ app.get("/root", function(req, res, _) {
 app.get("/root2", function(req, res) {
   console.log("root 2");
   res.send("root 2");
+});
+
+app.param("msg", function(req, res, next, msg, _) {
+  setTimeout(_, 1000);
+  req.msg = msg;
+  throw new Error("msg error");
+});
+
+app.get("/echo/:msg", function(req, res, _) {
+  res.send(req.msg);
 });
 
 http.createServer(app).listen(app.get("port"), function() {

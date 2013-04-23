@@ -41,6 +41,16 @@ app.use(function(err, req, res, next, _) {
   setTimeout(_, 1000);
   console.error(err);
 });
+
+// app.param is supported too.
+app.param("user", function(req, res, next, id, _) {
+  req.user = queryUser("...", _);
+  next();
+});
+
+app.get("/users/:user", function(req, res, _) {
+  res.send(req.user);
+});
 ```
 
 ## Notice

@@ -1,6 +1,6 @@
 {
   "name": "streamline-express",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An Express patch for using streamline.",
   "main": "./lib/streamline-express.js",
   "scripts": {
